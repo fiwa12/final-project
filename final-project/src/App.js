@@ -1,10 +1,14 @@
-import logo from "./logo.svg";
+import React, { Component } from "react";
 import "./App.css";
-import { Component } from "react";
+import Navbar from "./component/Navbar";
 
 class App extends Component {
   render() {
-    return <div className="divi"></div>;
+    return (
+      <div>
+        <Navbar />
+      </div>
+    );
   }
 }
 
