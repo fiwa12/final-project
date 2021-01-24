@@ -4,17 +4,13 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <header className="w3l-header">
+        <header>
           <div className="container">
             {/*/nav*/}
             <nav className="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-sm-3 px-0">
               <a className="navbar-brand" href="index.html">
-                <span className="fa fa-camera-retro" /> Pinstagram
+                <span className="fab fa-pinterest" />
               </a>
-              {/* if logo is image enable this   
-            <a class="navbar-brand" href="#index.html">
-              <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-            </a> */}
               <ul className="navbar-nav">
                 <li className="nav-item active">
                   <a className="nav-link" href="index.html">
@@ -22,19 +18,6 @@ class Navbar extends Component {
                   </a>
                 </li>
               </ul>
-              <button
-                className="navbar-toggler collapsed"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                {/* <span class="navbar-toggler-icon"></span> */}
-                <span className="fa icon-expand fa-bars" />
-                <span className="fa icon-close fa-times" />
-              </button>
               <div
                 className="collapse navbar-collapse"
                 id="navbarSupportedContent"
@@ -65,31 +48,41 @@ class Navbar extends Component {
                   </li>
                   <li className="nav-item active">
                     <a className="nav-link" href="index.html">
-                      Create <span className="fa fa-plus" />
+                      <span className="fas fa-plus-circle" />
                     </a>
                   </li>
-                  <li className="nav-item @@contact__active">
-                    <a className="nav-link" href="contact.html">
+                  <li className="nav-item dropdown @@pages__active">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
                       <span className="fa fa-user-circle" />
                     </a>
+                    <div
+                      className="dropdown-menu"
+                      aria-labelledby="navbarDropdown"
+                    >
+                      <a
+                        className="dropdown-item @@b__active"
+                        href=".html"
+                      >
+                        Settings
+                      </a>
+                      <a
+                        className="dropdown-item @@fa__active"
+                        href=".html"
+                      >
+                        Log Out
+                      </a>
+                    </div>
                   </li>
                 </ul>
               </div>
-              {/* toggle switch for light and dark theme */}
-              {/* <div className="mobile-position">
-                <nav className="navigation">
-                  <div className="theme-switch-wrapper">
-                    <label className="theme-switch" htmlFor="checkbox">
-                      <input type="checkbox" id="checkbox" />
-                      <div className="mode-container">
-                        <i className="gg-sun" />
-                        <i className="gg-moon" />
-                      </div>
-                    </label>
-                  </div>
-                </nav>
-              </div> */}
-              {/* //toggle switch for light and dark theme */}
             </nav>
           </div>
           {/*//nav*/}
