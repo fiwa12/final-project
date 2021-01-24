@@ -3,3 +3,8 @@
   padding: 0;
   border: 0;
 }
+
+p,
+ul {
+  margin-bottom: 0;
+}
