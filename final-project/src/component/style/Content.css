@@ -105,15 +105,16 @@ a {
   background-color: var(--brown1);
   border-radius: 7px;
   box-shadow: 2px 2px 5px 1px lightgrey;
-  width: 98%;
-  transition: opacity 0.1s ease-in-out;
+  width: 95%;
+  margin: 5px;
+  transition: opacity 0.3s ease-in-out;
   opacity: 1;
 }
 
 .post-img-text:hover {
   box-shadow: 3px 3px 5px 1px lightgrey;
   /* transition: all 0.1s ease-in-out; */
-  opacity: 0.7;
+  /* opacity: 1; */
 }
 
 .post-user img {
@@ -128,4 +129,8 @@ a {
   display: flex;
   justify-content: space-between;
   padding: 0.2vw 0.5vw;
+}
+
+.post-user {
+  box-shadow: ;
 }
