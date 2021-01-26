@@ -10,7 +10,7 @@ class TagFilterBar extends Component {
         <div className="arrow arrow-previous">
           <img className="arrow-icon" src="./icons/arrow-previous.svg" alt="" />
         </div>
-        <div className="chips-wrapper">
+        <div className="chips-wrapper" id="chips-wrapper">
           <ul className="chips-list">
             <li className="chips-item">
               <ChipsItem tagLable="All" />

@@ -45,161 +45,49 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- ==========================  NOTE:  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
-
-    <!-- ==========================  NOTE: CODENYA atas -->
     <script>
-      var NRHorizontalMenu = (function () {
-        var MENU_SELECTOR = ".horizontal-menu",
-          PANNER_SELECTOR = MENU_SELECTOR + "-panner",
-          ITEM_SELECTOR = MENU_SELECTOR + "-item",
-          ITEM_ON_SELECTOR = ITEM_SELECTOR + "_on";
+      document.addEventListener("DOMContentLoaded", function () {
+        const ele = document.getElementById("chips-wrapper");
+        ele.style.cursor = "grab";
 
-        var CAN_TOUCH_THIS =
-          "ontouchstart" in document.body ||
-          navigator.msMaxTouchPoints ||
-          navigator.maxTouchPoints;
+        let pos = { top: 0, left: 0, x: 0, y: 0 };
 
-        var menu,
-          menuX,
-          menuWidth,
-          panner,
-          currentItem,
-          currentItemX,
-          currentItemWidth,
-          baseX,
-          overflow,
-          mouseEntered;
+        const mouseDownHandler = function (e) {
+          ele.style.cursor = "grabbing";
+          ele.style.userSelect = "none";
 
-        function windowWidth() {
-          return (
-            window.innerWidth ||
-            document.documentElement.clientWidth ||
-            document.body.clientWidth
-          );
-        }
+          pos = {
+            left: ele.scrollLeft,
+            top: ele.scrollTop,
+            // Get the current mouse position
+            x: e.clientX,
+            y: e.clientY,
+          };
 
-        function pageX(el) {
-          var ox = 0;
-
-          while (el) {
-            ox += el.offsetLeft;
-            el = el.offsetParent;
-          }
-
-          return ox;
-        }
-
-        function init() {
-          menu = document.querySelector(MENU_SELECTOR);
-          panner = menu.querySelector(PANNER_SELECTOR);
-          currentItem = menu.querySelector(ITEM_ON_SELECTOR);
-
-          update();
-
-          menu.addEventListener("mousemove", _.throttle(onMouseMove, 16));
-          menu.addEventListener("mouseenter", onMouseEnter);
-          menu.addEventListener("mouseleave", onMouseLeave);
-        }
-
-        function update() {
-          menuX = pageX(menu);
-          menuWidth = menu.offsetWidth;
-          currentItemX = currentItem.offsetLeft;
-          currentItemWidth = currentItem.offsetWidth;
-
-          var items = menu.querySelectorAll(ITEM_SELECTOR);
-          var pannerPaddingRight = parseFloat(
-              window.getComputedStyle(panner).paddingRight
-            ),
-            pannerWidth =
-              items[items.length - 1].offsetLeft +
-              items[items.length - 1].offsetWidth +
-              pannerPaddingRight;
-
-          baseX = menuWidth / 2 - currentItemX - currentItemWidth / 2;
-          overflow = pannerWidth - menuWidth;
-
-          TweenMax.set(panner, {
-            width: pannerWidth,
-            left: baseX,
-          });
-        }
-
-        function initForTouch() {
-          menu = document.querySelector(MENU_SELECTOR);
-          panner = menu.querySelector(PANNER_SELECTOR);
-          currentItem = menu.querySelector(ITEM_ON_SELECTOR);
-
-          menu.style.overflowX = "auto";
-
-          updateForTouch();
-        }
-
-        function updateForTouch() {
-          menuWidth = menu.offsetWidth;
-          currentItemX = currentItem.offsetLeft;
-          currentItemWidth = currentItem.offsetWidth;
-          baseX = currentItemX - menuWidth / 2 + currentItemWidth / 2;
-
-          var items = menu.querySelectorAll(ITEM_SELECTOR);
-          var pannerPaddingRight = parseFloat(
-              window.getComputedStyle(panner).paddingRight
-            ),
-            pannerWidth =
-              items[items.length - 1].offsetLeft +
-              items[items.length - 1].offsetWidth +
-              pannerPaddingRight;
-
-          panner.style.width = pannerWidth + "px";
-          menu.scrollLeft = baseX;
-        }
-
-        function onMouseEnter(ev) {
-          mouseEntered = true;
-        }
-
-        function onMouseMove(ev) {
-          if (mouseEntered) {
-            var rx = ((ev.pageX - menuX) / menuWidth - 0.5) * 2;
-
-            TweenMax.killTweensOf(panner);
-
-            TweenMax.to(panner, 0.5, {
-              ease: Power1.easeOut,
-              x:
-                rx > 0
-                  ? Math.min(-rx * (overflow + baseX), 0)
-                  : Math.max(rx * baseX, 0),
-            });
-          }
-        }
-
-        function onMouseLeave(ev) {
-          mouseEntered = false;
-
-          TweenMax.killTweensOf(panner);
-
-          TweenMax.to(panner, 0.5, {
-            ease: Power1.easeOut,
-            x: 0,
-          });
-        }
-
-        return {
-          init: CAN_TOUCH_THIS ? initForTouch : init,
-          update: CAN_TOUCH_THIS ? updateForTouch : update,
+          document.addEventListener("mousemove", mouseMoveHandler);
+          document.addEventListener("mouseup", mouseUpHandler);
         };
-      })();
 
-      window.addEventListener("load", function () {
-        NRHorizontalMenu.init();
-      });
+        const mouseMoveHandler = function (e) {
+          // How far the mouse has been moved
+          const dx = e.clientX - pos.x;
+          const dy = e.clientY - pos.y;
 
-      window.addEventListener("resize", function () {
-        NRHorizontalMenu.update();
+          // Scroll the element
+          ele.scrollTop = pos.top - dy;
+          ele.scrollLeft = pos.left - dx;
+        };
+
+        const mouseUpHandler = function () {
+          ele.style.cursor = "grab";
+          ele.style.removeProperty("user-select");
+
+          document.removeEventListener("mousemove", mouseMoveHandler);
+          document.removeEventListener("mouseup", mouseUpHandler);
+        };
+
+        // Attach the handler
+        ele.addEventListener("mousedown", mouseDownHandler);
       });
     </script>
   </body>

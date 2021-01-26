@@ -32,6 +32,7 @@
   -webkit-overflow-scrolling: touch;
   /* ====== SUPAYA TIDAK TURUN LISTNYA */
   white-space: nowrap;
+  cursor: grab;
 }
 .chips-wrapper::-webkit-scrollbar {
   display: none;
