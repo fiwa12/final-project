@@ -16,10 +16,19 @@
 }
 
 p,
+<<<<<<< Updated upstream
 ul,
 li {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   font-size: 1em;
+=======
+ul {
+  margin-bottom: 0;
+}
+
+body {
+  color: var(--green2);
+>>>>>>> Stashed changes
 }
