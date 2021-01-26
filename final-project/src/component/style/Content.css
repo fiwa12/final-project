@@ -24,7 +24,7 @@ a {
 
 .post-container {
   width: 100vw;
-  padding: 2vw 5vw 2vw 5vw;
+  padding: 0vw 5vw 2vw 5vw;
   columns: 6;
   column-gap: 20px;
   background-color: white;

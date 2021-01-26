@@ -6,9 +6,9 @@ import $ from "jquery";
 class TagFilterBar extends Component {
   render() {
     return (
-      <div className="tag-filter-bar mt-5">
-        <div className="arrow arrow-previous">
-          <img className="arrow-icon" src="./icons/arrow-previous.svg" alt="" />
+      <div className="container tag-filter-bar pt-5 mt-5">
+        <div className="arrow arrow-previous mt-1">
+        <h4><i class="fas fa-chevron-circle-left"></i></h4>
         </div>
         <div className="chips-wrapper" id="chips-wrapper">
           <ul className="chips-list">
@@ -47,8 +47,8 @@ class TagFilterBar extends Component {
             </li>
           </ul>
         </div>
-        <div className="arrow arrow-next">
-          <img className="arrow-icon" src="./../icons/arrow-next.svg" alt="" />
+        <div className="arrow arrow-next mt-1">
+        <h4><i class="fas fa-chevron-circle-right"></i></h4>
         </div>
       </div>
     );

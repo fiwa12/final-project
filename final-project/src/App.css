@@ -18,3 +18,12 @@
 body {
   color: var(--green2);
 }
+
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 1em;
+}
