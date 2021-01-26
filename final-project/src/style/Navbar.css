@@ -1,0 +1,40 @@
+:root {
+  --brown1: #e6cbc0;
+  --brown2: #ddc0b6;
+  --brown3: #c3a299;
+  --brown4: #cfa796;
+  --brown5: #ac816b;
+  --brown6: #9f6b4e;
+  --green1: #70836f;
+  --green2: #353d30;
+}
+
+body {
+  background: #e6cbc0;
+  background: -webkit-linear-gradient(to right, #cfa796, #9f6b4e);
+  background: linear-gradient(to right, #cfa796, #9f6b4e);
+  min-height: 100vh;
+}
+
+.profile-picture img {
+  height: 25px;
+  width: 25px;
+  border-radius: 25%;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
