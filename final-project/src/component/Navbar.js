@@ -46,7 +46,7 @@ class Navbar extends Component {
                 </li>
               </ul>
               <form action="">
-                <div className="p-1 bg-light rounded rounded-pill shadow-sm">
+                <div className="p-0 bg-light rounded rounded-pill shadow-sm mr-5">
                   <div className="input-group">
                     <div className="input-group-prepend">
                       <button
@@ -70,7 +70,7 @@ class Navbar extends Component {
                 <li className="nav-item">
                   <a className="nav-link" href="#">
                     <h4>
-                      <i class="fas fa-bell ml-3 mr-3"></i>
+                      <i class="fas fa-bell ml-5 mr-3"></i>
                     </h4>
                   </a>
                 </li>

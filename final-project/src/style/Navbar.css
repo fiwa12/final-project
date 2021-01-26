@@ -38,3 +38,8 @@ body {
   color: #aaa;
   font-style: italic;
 }
+
+.input-group input {
+  height: 30px;
+  width: 50px;
+}
