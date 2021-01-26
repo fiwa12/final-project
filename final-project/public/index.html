@@ -39,5 +39,45 @@
       integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
       crossorigin="anonymous"
     ></script>
+
+    <!-- ==========================  NOTE: SCRIPTS FOR TAGS FILTER -->
+    <!-- ==========================  NOTE: JQUERY LINKS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+
+    <!-- ==========================  NOTE: SCRIPT.JS -->
+    <script src="script.js"></script>
+
+    <!-- ==========================  NOTE: BUTTON JQUERY -->
+    <script>
+      (function ($) {
+        $(".chips-wrapper").on("scroll", function () {
+          $val = $(this).scrollLeft();
+
+          if (
+            $(this).scrollLeft() + $(this).innerWidth() >=
+            $(this)[0].scrollWidth
+          ) {
+            $(".arrow-next").hide();
+          } else {
+            $(".arrow-next").show();
+          }
+
+          if ($val == 0) {
+            $(".arrow-previous").hide();
+          } else {
+            $(".arrow-previous").show();
+          }
+        });
+        console.log("init-scroll: " + $(".arrow-next").scrollLeft());
+        $(".arrow-next").on("click", function () {
+          $(".chips-wrapper").animate({ scrollLeft: "+=580" }, 400);
+        });
+        $(".arrow-previous").on("click", function () {
+          $(".chips-wrapper").animate({ scrollLeft: "-=580" }, 400);
+        });
+      })(jQuery);
+    </script>
   </body>
 </html>
