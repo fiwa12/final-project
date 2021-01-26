@@ -15,6 +15,9 @@
   border: 0;
 }
 
-body {
+p,
+ul {
+  margin-bottom: 0;
+
+  body {
   color: var(--green2);
-}
