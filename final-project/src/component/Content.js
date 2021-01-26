@@ -5,7 +5,7 @@ import "./style/Content.css";
 class Content extends Component {
   render() {
     return (
-      <div className="post-container">
+      <div className="post-container mt-4">
         <Thumbnail imageExample="./images/Content/1.jpg" postText="ABNSC" />
         <Thumbnail
           imageExample="./images/Content/2.jpg"

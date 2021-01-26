@@ -15,7 +15,7 @@ class Navbar extends Component {
                 className="d-inline-block align-top"
                 alt=""
               />
-              PINSTAGRAM
+              Pinstagram
             </a>
 
             <button
@@ -45,50 +45,45 @@ class Navbar extends Component {
                   </a>
                 </li>
               </ul>
+              <div className="search-bar">
               <form action="">
-                <div className="p-0 bg-light rounded rounded-pill shadow-sm mr-5">
-                  <div className="input-group">
-                    <div className="input-group-prepend">
-                      <button
-                        id="button-addon2"
-                        type="submit"
-                        className="btn btn-link text-secondary"
-                      >
-                        <i className="fas fa-search" />
-                      </button>
+                <div className="search_wrap search_wrap_4">
+                  <div className="search_box">
+                    <div className="btn btn_common">
+                      <i className="fas fa-search" />
                     </div>
                     <input
-                      type="search"
+                      type="text"
+                      className="input"
                       placeholder="Search your style?"
-                      aria-describedby="button-addon2"
-                      className="form-control border-0 bg-light"
                     />
                   </div>
                 </div>
               </form>
-              <ul className="navbar-nav mr-auto">
+              </div>
+              <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <a className="nav-link" href="#">
                     <h4>
-                      <i class="fas fa-bell ml-5 mr-3"></i>
+                      <i class="fas fa-bell mt-2 ml-1 mr-1"></i>
                     </h4>
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#">
                     <h4>
-                      <i class="fas fa-comment-dots mr-3"></i>
+                      <i class="fas fa-comment-dots mt-2 ml-1 mr-1"></i>
                     </h4>
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#">
                     <h4>
-                      <i class="fas fa-plus-circle mr-3"></i>
+                      <i class="fas fa-plus-circle mt-2 ml-1 mr-1"></i>
                     </h4>
                   </a>
                 </li>
-                <li className="nav-item dropdown">
+                <li className="nav-item dropdown mt-1 ml-1 mr-1">
                   <a
                     className="nav-link dropdown-toggle"
                     href="#"
