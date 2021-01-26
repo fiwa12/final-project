@@ -1,13 +1,16 @@
-import logo from "./logo.svg";
+import React, { Component } from "react";
 import "./App.css";
-import { Component } from "react";
 import TagFilterBar from "./component/TagFilterBar";
+import Content from "./component/Content";
+import Navbar from "./component/Navbar";
 
 class App extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         <TagFilterBar />
+        <Content />
       </div>
     );
   }

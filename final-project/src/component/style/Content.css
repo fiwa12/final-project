@@ -1,0 +1,136 @@
+:root {
+  --brown1: #e6cbc0;
+  --brown2: #ddc0b6;
+  --brown3: #c3a299;
+  --brown4: #cfa796;
+  --brown5: #ac816b;
+  --brown6: #9f6b4e;
+  --green1: #70836f;
+  --green2: #353d30;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: poppins;
+  letter-spacing: 0.05em;
+}
+
+a {
+  text-decoration: none;
+  color: var(--green2);
+}
+
+.post-container {
+  width: 100vw;
+  padding: 2vw 5vw 2vw 5vw;
+  columns: 6;
+  column-gap: 20px;
+  background-color: white;
+  /* opacity: 0.7; */
+}
+
+@media (max-width: 1800px) {
+  .post-container {
+    columns: 5;
+  }
+}
+
+@media (max-width: 1200px) {
+  .post-container {
+    columns: 4;
+  }
+}
+
+@media (max-width: 800px) {
+  .post-container {
+    columns: 3;
+    font-size: 0.8em;
+  }
+  .logo {
+    font-size: 1.6em;
+  }
+}
+
+@media (max-width: 500px) {
+  .post-container {
+    columns: 2;
+    font-size: 0.8em;
+  }
+  .logo {
+    font-size: 1.6em;
+  }
+}
+
+.post-thumbnail {
+  width: 100%;
+  background-color: transparent;
+  overflow: hidden;
+  break-inside: avoid;
+  transition: all 0.1s ease-in-out;
+}
+
+.post-thumbnail:hover {
+  transform: translateY(-0.25rem);
+}
+
+.post-img {
+  width: 100%;
+  background-color: var(--brown1);
+  padding-bottom: 0.3vw;
+  border-radius: 7px;
+}
+
+.post-img img {
+  width: 100%;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.post-container p {
+  font-size: 1.2em;
+}
+
+.post-text {
+  background-color: var(--brown1);
+  border-radius: 7px;
+}
+
+.post-text p {
+  word-wrap: break-word;
+}
+
+.post-img-text {
+  background-color: var(--brown1);
+  border-radius: 7px;
+  box-shadow: 2px 2px 5px 1px lightgrey;
+  width: 95%;
+  margin: 5px;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.post-img-text:hover {
+  box-shadow: 3px 3px 5px 1px lightgrey;
+  /* transition: all 0.1s ease-in-out; */
+  opacity: 0.7;
+}
+
+.post-user img {
+  width: 3vw;
+  height: 3vw;
+  object-fit: cover;
+  border-radius: 50%;
+  padding-bottom: 0.2vw;
+}
+
+.post-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2vw 0.5vw;
+}
+
+.post-user {
+  box-shadow: ;
+}
