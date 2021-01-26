@@ -1,3 +1,14 @@
+:root {
+  --brown1: #e6cbc0;
+  --brown2: #ddc0b6;
+  --brown3: #c3a299;
+  --brown4: #cfa796;
+  --brown5: #ac816b;
+  --brown6: #9f6b4e;
+  --green1: #70836f;
+  --green2: #353d30;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,4 +18,6 @@
 p,
 ul {
   margin-bottom: 0;
-}
+
+  body {
+  color: var(--green2);
