@@ -17,8 +17,14 @@
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="fontawesome-free/css/all.min.css" />
     <title>Final Project</title>
   </head>
+
+  <!-- ==========================  NOTE: BODY BODY BODY -->
+  <!-- ==========================  NOTE: BODY BODY BODY -->
+  <!-- ==========================  NOTE: BODY BODY BODY -->
+  <!-- ==========================  NOTE: BODY BODY BODY -->
   <body>
     <div id="root"></div>
 
@@ -39,44 +45,162 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- ==========================  NOTE: SCRIPTS FOR TAGS FILTER -->
-    <!-- ==========================  NOTE: JQUERY LINKS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+    <!-- ==========================  NOTE:  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
 
-    <!-- ==========================  NOTE: SCRIPT.JS -->
-    <script src="script.js"></script>
-
-    <!-- ==========================  NOTE: BUTTON JQUERY -->
+    <!-- ==========================  NOTE: CODENYA atas -->
     <script>
-      (function ($) {
-        $(".chips-wrapper").on("scroll", function () {
-          $val = $(this).scrollLeft();
+      var NRHorizontalMenu = (function () {
+        var MENU_SELECTOR = ".horizontal-menu",
+          PANNER_SELECTOR = MENU_SELECTOR + "-panner",
+          ITEM_SELECTOR = MENU_SELECTOR + "-item",
+          ITEM_ON_SELECTOR = ITEM_SELECTOR + "_on";
 
-          if (
-            $(this).scrollLeft() + $(this).innerWidth() >=
-            $(this)[0].scrollWidth
-          ) {
-            $(".arrow-next").hide();
-          } else {
-            $(".arrow-next").show();
+        var CAN_TOUCH_THIS =
+          "ontouchstart" in document.body ||
+          navigator.msMaxTouchPoints ||
+          navigator.maxTouchPoints;
+
+        var menu,
+          menuX,
+          menuWidth,
+          panner,
+          currentItem,
+          currentItemX,
+          currentItemWidth,
+          baseX,
+          overflow,
+          mouseEntered;
+
+        function windowWidth() {
+          return (
+            window.innerWidth ||
+            document.documentElement.clientWidth ||
+            document.body.clientWidth
+          );
+        }
+
+        function pageX(el) {
+          var ox = 0;
+
+          while (el) {
+            ox += el.offsetLeft;
+            el = el.offsetParent;
           }
 
-          if ($val == 0) {
-            $(".arrow-previous").hide();
-          } else {
-            $(".arrow-previous").show();
+          return ox;
+        }
+
+        function init() {
+          menu = document.querySelector(MENU_SELECTOR);
+          panner = menu.querySelector(PANNER_SELECTOR);
+          currentItem = menu.querySelector(ITEM_ON_SELECTOR);
+
+          update();
+
+          menu.addEventListener("mousemove", _.throttle(onMouseMove, 16));
+          menu.addEventListener("mouseenter", onMouseEnter);
+          menu.addEventListener("mouseleave", onMouseLeave);
+        }
+
+        function update() {
+          menuX = pageX(menu);
+          menuWidth = menu.offsetWidth;
+          currentItemX = currentItem.offsetLeft;
+          currentItemWidth = currentItem.offsetWidth;
+
+          var items = menu.querySelectorAll(ITEM_SELECTOR);
+          var pannerPaddingRight = parseFloat(
+              window.getComputedStyle(panner).paddingRight
+            ),
+            pannerWidth =
+              items[items.length - 1].offsetLeft +
+              items[items.length - 1].offsetWidth +
+              pannerPaddingRight;
+
+          baseX = menuWidth / 2 - currentItemX - currentItemWidth / 2;
+          overflow = pannerWidth - menuWidth;
+
+          TweenMax.set(panner, {
+            width: pannerWidth,
+            left: baseX,
+          });
+        }
+
+        function initForTouch() {
+          menu = document.querySelector(MENU_SELECTOR);
+          panner = menu.querySelector(PANNER_SELECTOR);
+          currentItem = menu.querySelector(ITEM_ON_SELECTOR);
+
+          menu.style.overflowX = "auto";
+
+          updateForTouch();
+        }
+
+        function updateForTouch() {
+          menuWidth = menu.offsetWidth;
+          currentItemX = currentItem.offsetLeft;
+          currentItemWidth = currentItem.offsetWidth;
+          baseX = currentItemX - menuWidth / 2 + currentItemWidth / 2;
+
+          var items = menu.querySelectorAll(ITEM_SELECTOR);
+          var pannerPaddingRight = parseFloat(
+              window.getComputedStyle(panner).paddingRight
+            ),
+            pannerWidth =
+              items[items.length - 1].offsetLeft +
+              items[items.length - 1].offsetWidth +
+              pannerPaddingRight;
+
+          panner.style.width = pannerWidth + "px";
+          menu.scrollLeft = baseX;
+        }
+
+        function onMouseEnter(ev) {
+          mouseEntered = true;
+        }
+
+        function onMouseMove(ev) {
+          if (mouseEntered) {
+            var rx = ((ev.pageX - menuX) / menuWidth - 0.5) * 2;
+
+            TweenMax.killTweensOf(panner);
+
+            TweenMax.to(panner, 0.5, {
+              ease: Power1.easeOut,
+              x:
+                rx > 0
+                  ? Math.min(-rx * (overflow + baseX), 0)
+                  : Math.max(rx * baseX, 0),
+            });
           }
-        });
-        console.log("init-scroll: " + $(".arrow-next").scrollLeft());
-        $(".arrow-next").on("click", function () {
-          $(".chips-wrapper").animate({ scrollLeft: "+=580" }, 400);
-        });
-        $(".arrow-previous").on("click", function () {
-          $(".chips-wrapper").animate({ scrollLeft: "-=580" }, 400);
-        });
-      })(jQuery);
+        }
+
+        function onMouseLeave(ev) {
+          mouseEntered = false;
+
+          TweenMax.killTweensOf(panner);
+
+          TweenMax.to(panner, 0.5, {
+            ease: Power1.easeOut,
+            x: 0,
+          });
+        }
+
+        return {
+          init: CAN_TOUCH_THIS ? initForTouch : init,
+          update: CAN_TOUCH_THIS ? updateForTouch : update,
+        };
+      })();
+
+      window.addEventListener("load", function () {
+        NRHorizontalMenu.init();
+      });
+
+      window.addEventListener("resize", function () {
+        NRHorizontalMenu.update();
+      });
     </script>
   </body>
 </html>
