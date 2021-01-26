@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import "./App.css";
-import TagFilterBar from "./component/TagFilterBar";
+import ChipsItem from "./component/ChipsItem";
+import HorizontalScrollMenu from "./component/HorizontalScrollMenu";
+import Content from "./component/Content";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <TagFilterBar />
+        {/* <Navbar />  */}
+        <HorizontalScrollMenu />
+        <ChipsItem />
+        <Content />
       </div>
     );
   }
